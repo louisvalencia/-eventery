@@ -111,32 +111,32 @@ def create_event():
     db.session.add(new_event)
     db.session.commit()
 
-    sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
-    data = {
-    "personalizations": [
-        {
-        "to": [
-            {
-            "email": host_email
-            }
-        ],
-        "subject": "Eventery Notification"
-        }
-    ],
-    "from": {
-        "email": "louissean12@gmail.com"
-    },
-    "content": [
-        {
-        "type": "text/plain",
-        "value": "You received the following notification from eventery: https://drive.google.com/file/d/1r_g9LWH-_McHuVXuEwn9RXNUEq8Voxt6/view?usp=sharing"
-        }
-    ]
-    }
-    response = sg.client.mail.send.post(request_body=data)
-    print(response.status_code)
-    print(response.body)
-    print(response.headers)
+    # sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
+    # data = {
+    # "personalizations": [
+    #     {
+    #     "to": [
+    #         {
+    #         "email": host_email
+    #         }
+    #     ],
+    #     "subject": "Eventery Notification"
+    #     }
+    # ],
+    # "from": {
+    #     "email": "louissean12@gmail.com"
+    # },
+    # "content": [
+    #     {
+    #     "type": "text/plain",
+    #     "value": "You received the following notification from eventery: https://drive.google.com/file/d/1r_g9LWH-_McHuVXuEwn9RXNUEq8Voxt6/view?usp=sharing"
+    #     }
+    # ]
+    # }
+    # response = sg.client.mail.send.post(request_body=data)
+    # print(response.status_code)
+    # print(response.body)
+    # print(response.headers)
 
     return success_response(new_event.serialize(), 201)
 
