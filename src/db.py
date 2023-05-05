@@ -11,7 +11,7 @@ class MyDateTime(db.TypeDecorator):
     
     def process_bind_param(self, value, dialect):
         if type(value) is str:
-            return datetime.datetime.strptime(value, '%Y-%m-%dT%H:%M:%S')
+            return datetime.datetime.strptime(value, '%Y-%m-%d %H:%M:%S')
         return value
 
 
@@ -99,7 +99,8 @@ class User(db.Model):
     return{
       "id": self.id,
       "name": self.name,
-      "netid": self.netid
+      "netid": self.netid,
+      "email": self.email
     }
 
   def _urlsafe_base_64(self):
